@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenSource Consulting</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Styles / Animations -->
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        /* Custom scrollbar for better look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F5F7F9; }
+        ::-webkit-scrollbar-thumb { background: #1F5F8B; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #163E59; }
+    </style>
+</head>
+<body class="bg-[#F5F7F9] font-sans text-[#163E59] antialiased">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2E7FA3] to-[#A7D1B5] flex items-center justify-center mr-3 shadow-sm">
+                        <i data-lucide="server" class="text-white w-6 h-6"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-[#163E59]">
+                        OpenSource <span class="font-light text-[#1F5F8B]">Consulting</span>
+                    </span>
+                </div>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <button data-target="home" onclick="navigateTo('home')" class="nav-link text-sm font-medium transition-colors hover:text-[#6FC1A7] text-[#1F5F8B] border-b-2 border-[#6FC1A7]">Inicio</button>
+                    <button data-target="services" onclick="navigateTo('services')" class="nav-link text-sm font-medium transition-colors hover:text-[#6FC1A7] text-[#163E59]">Servicios</button>
+                    <button data-target="about" onclick="navigateTo('about')" class="nav-link text-sm font-medium transition-colors hover:text-[#6FC1A7] text-[#163E59]">Sobre Nosotros</button>
+                    <button data-target="cases" onclick="navigateTo('cases')" class="nav-link text-sm font-medium transition-colors hover:text-[#6FC1A7] text-[#163E59]">Casos de Éxito</button>
+                    <button data-target="contact" onclick="navigateTo('contact')" class="nav-link text-sm font-medium transition-colors hover:text-[#6FC1A7] text-[#163E59]">Contacto</button>
+                    
+                    <button onclick="navigateTo('contact')" class="bg-[#1F5F8B] hover:bg-[#163E59] text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        Solicitar diagnóstico
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-[#163E59] hover:text-[#1F5F8B] focus:outline-none">
+                        <i data-lucide="menu" id="menu-icon" class="h-6 w-6"></i>
+                        <i data-lucide="x" id="close-icon" class="h-6 w-6 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-[#F5F7F9] shadow-lg absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <button data-target="home" onclick="navigateTo('home')" class="mobile-nav-link block w-full text-left px-3 py-4 rounded-md text-base font-medium bg-[#DFF3EA] text-[#1F5F8B]">Inicio</button>
+                <button data-target="services" onclick="navigateTo('services')" class="mobile-nav-link block w-full text-left px-3 py-4 rounded-md text-base font-medium text-[#163E59] hover:bg-[#F5F7F9]">Servicios</button>
+                <button data-target="about" onclick="navigateTo('about')" class="mobile-nav-link block w-full text-left px-3 py-4 rounded-md text-base font-medium text-[#163E59] hover:bg-[#F5F7F9]">Sobre Nosotros</button>
+                <button data-target="cases" onclick="navigateTo('cases')" class="mobile-nav-link block w-full text-left px-3 py-4 rounded-md text-base font-medium text-[#163E59] hover:bg-[#F5F7F9]">Casos de Éxito</button>
+                <button data-target="contact" onclick="navigateTo('contact')" class="mobile-nav-link block w-full text-left px-3 py-4 rounded-md text-base font-medium text-[#163E59] hover:bg-[#F5F7F9]">Contacto</button>
+                
+                <button onclick="navigateTo('contact')" class="w-full mt-4 bg-[#6FC1A7] text-[#163E59] font-bold px-3 py-4 rounded-xl text-center">
+                    Solicitar diagnóstico / auditoría
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="pt-20">
+        
+        <!-- PAGE: HOME -->
+        <div id="page-home" class="page-section animate-fade-in block">
+            <!-- HERO SECTION -->
+            <section class="relative bg-gradient-to-r from-[#2E7FA3] via-[#5FA8A5] to-[#A7D1B5] overflow-hidden py-32 lg:py-40">
+                <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-[100px] opacity-20 animate-pulse"></div>
+                <div class="absolute bottom-[-20%] right-[-10%] w-[40rem] h-[40rem] bg-[#163E59] rounded-full mix-blend-overlay filter blur-[120px] opacity-10"></div>
+                
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+                    <span class="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm font-medium mb-6">
+                        Especialistas en PYMEs
+                    </span>
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight drop-shadow-sm">
+                        Potenciamos el negocio de tu PYME <br class="hidden md:block"/> con tecnología inteligente
+                    </h1>
+                    <p class="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto font-light">
+                        Resolvemos problemas reales: reducimos costos, aseguramos tus datos y modernizamos tus procesos para que te enfoques en crecer.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <button onclick="navigateTo('contact')" class="bg-white text-[#1F5F8B] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#DFF3EA] transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 w-full sm:w-auto flex items-center justify-center gap-2">
+                            Solicitar diagnóstico <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                        </button>
+                        <button onclick="navigateTo('services')" class="bg-transparent border-2 border-white/50 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white/10 transition-all w-full sm:w-auto">
+                            Conocer servicios
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BENEFITS SECTION -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl font-bold text-[#163E59] mb-4">¿Por qué elegirnos?</h2>
+                        <div class="w-20 h-1 bg-[#6FC1A7] mx-auto rounded-full"></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        <div class="bg-[#F5F7F9] p-8 rounded-[2rem] hover:shadow-lg transition-shadow border border-transparent hover:border-[#DFF3EA]">
+                            <div class="w-14 h-14 bg-[#DFF3EA] rounded-2xl flex items-center justify-center mb-6 text-[#1F5F8B]">
+                                <i data-lucide="activity" class="w-7 h-7"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-[#163E59] mb-3">Eficiencia Operativa</h3>
+                            <p class="text-[#163E59]/70 leading-relaxed">Automatizamos tareas manuales para que tu equipo produzca más en menos tiempo.</p>
+                        </div>
+                        <div class="bg-[#F5F7F9] p-8 rounded-[2rem] hover:shadow-lg transition-shadow border border-transparent hover:border-[#DFF3EA]">
+                            <div class="w-14 h-14 bg-[#DFF3EA] rounded-2xl flex items-center justify-center mb-6 text-[#1F5F8B]">
+                                <i data-lucide="shield" class="w-7 h-7"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-[#163E59] mb-3">Seguridad Integral</h3>
+                            <p class="text-[#163E59]/70 leading-relaxed">Protegemos la información crítica de tu negocio contra ciberataques y pérdidas de datos.</p>
+                        </div>
+                        <div class="bg-[#F5F7F9] p-8 rounded-[2rem] hover:shadow-lg transition-shadow border border-transparent hover:border-[#DFF3EA]">
+                            <div class="w-14 h-14 bg-[#DFF3EA] rounded-2xl flex items-center justify-center mb-6 text-[#1F5F8B]">
+                                <i data-lucide="refresh-cw" class="w-7 h-7"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-[#163E59] mb-3">Modernización</h3>
+                            <p class="text-[#163E59]/70 leading-relaxed">Actualizamos sistemas obsoletos hacia plataformas ágiles, escalables y en la nube.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVICES PREVIEW -->
+            <section class="py-24 bg-[#F5F7F9] relative overflow-hidden">
+                <div class="absolute right-0 top-1/2 -translate-y-1/2 w-64 h-64 bg-[#DFF3EA] rounded-l-full opacity-50 blur-3xl"></div>
+                
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                        <div class="max-w-2xl">
+                            <h2 class="text-3xl md:text-4xl font-bold text-[#163E59] mb-4">Nuestros Servicios</h2>
+                            <p class="text-lg text-[#163E59]/70">Soluciones IT a medida para las necesidades específicas de tu empresa.</p>
+                        </div>
+                        <button onclick="navigateTo('services')" class="hidden md:flex items-center text-[#1F5F8B] font-semibold hover:text-[#6FC1A7] transition-colors">
+                            Ver todos los servicios <i data-lucide="chevron-right" class="w-5 h-5 ml-1"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="group bg-white p-6 rounded-2xl flex items-center justify-between cursor-pointer shadow-sm hover:shadow-md transition-all border border-gray-100" onclick="navigateTo('services')">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-[#F5F7F9] group-hover:bg-[#DFF3EA] rounded-full flex items-center justify-center mr-4 transition-colors">
+                                    <i data-lucide="users" class="w-6 h-6 text-[#1F5F8B]"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-[#163E59]">Consultoría IT Estratégica</h4>
+                            </div>
+                            <i data-lucide="chevron-right" class="text-gray-300 group-hover:text-[#6FC1A7] transition-colors"></i>
+                        </div>
+                        <div class="group bg-white p-6 rounded-2xl flex items-center justify-between cursor-pointer shadow-sm hover:shadow-md transition-all border border-gray-100" onclick="navigateTo('services')">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-[#F5F7F9] group-hover:bg-[#DFF3EA] rounded-full flex items-center justify-center mr-4 transition-colors">
+                                    <i data-lucide="laptop" class="w-6 h-6 text-[#1F5F8B]"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-[#163E59]">Modernización de Sistemas</h4>
+                            </div>
+                            <i data-lucide="chevron-right" class="text-gray-300 group-hover:text-[#6FC1A7] transition-colors"></i>
+                        </div>
+                        <div class="group bg-white p-6 rounded-2xl flex items-center justify-between cursor-pointer shadow-sm hover:shadow-md transition-all border border-gray-100" onclick="navigateTo('services')">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-[#F5F7F9] group-hover:bg-[#DFF3EA] rounded-full flex items-center justify-center mr-4 transition-colors">
+                                    <i data-lucide="trending-up" class="w-6 h-6 text-[#1F5F8B]"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-[#163E59]">Mejora de Procesos</h4>
+                            </div>
+                            <i data-lucide="chevron-right" class="text-gray-300 group-hover:text-[#6FC1A7] transition-colors"></i>
+                        </div>
+                        <div class="group bg-white p-6 rounded-2xl flex items-center justify-between cursor-pointer shadow-sm hover:shadow-md transition-all border border-gray-100" onclick="navigateTo('services')">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-[#F5F7F9] group-hover:bg-[#DFF3EA] rounded-full flex items-center justify-center mr-4 transition-colors">
+                                    <i data-lucide="shield" class="w-6 h-6 text-[#1F5F8B]"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-[#163E59]">Seguridad Informática</h4>
+                            </div>
+                            <i data-lucide="chevron-right" class="text-gray-300 group-hover:text-[#6FC1A7] transition-colors"></i>
+                        </div>
+                    </div>
+                    <button onclick="navigateTo('services')" class="md:hidden mt-8 flex items-center justify-center w-full text-[#1F5F8B] font-semibold">
+                        Ver todos los servicios <i data-lucide="chevron-right" class="w-5 h-5 ml-1"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- CASES TEASER CTA -->
+            <section class="py-24 bg-white">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="bg-gradient-to-br from-[#163E59] to-[#1F5F8B] rounded-[3rem] p-10 md:p-16 text-center relative overflow-hidden shadow-2xl">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-[#6FC1A7] rounded-full mix-blend-multiply filter blur-3xl opacity-30 transform translate-x-1/2 -translate-y-1/2"></div>
+                        <i data-lucide="lock" class="w-12 h-12 text-[#6FC1A7] mx-auto mb-6"></i>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Resultados reales, documentados</h2>
+                        <p class="text-xl text-[#DFF3EA] mb-10 max-w-2xl mx-auto font-light">
+                            Nuestra sección de Casos de Éxito contiene información detallada sobre cómo hemos optimizado recursos en otras PYMEs. Por confidencialidad, el acceso es privado.
+                        </p>
+                        <button onclick="navigateTo('contact')" class="bg-[#6FC1A7] text-[#163E59] hover:bg-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                            Contactanos para obtener acceso
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- PAGE: SERVICES -->
+        <div id="page-services" class="page-section hidden animate-fade-in pb-20">
+            <div class="bg-[#1F5F8B] py-20 text-center text-white">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Soluciones para tu negocio</h1>
+                <p class="text-xl text-[#DFF3EA] max-w-2xl mx-auto px-4">
+                    Servicios diseñados específicamente para resolver los desafíos tecnológicos de las pequeñas y medianas empresas.
+                </p>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl shadow-gray-200/50 border border-gray-100 flex flex-col h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="w-14 h-14 bg-gradient-to-br from-[#DFF3EA] to-[#6FC1A7]/30 rounded-2xl flex items-center justify-center mr-5">
+                                <i data-lucide="users" class="w-7 h-7 text-[#1F5F8B]"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-[#163E59]">Consultoría IT Estratégica</h2>
+                        </div>
+                        <p class="text-[#163E59]/80 mb-8 flex-grow text-lg leading-relaxed">Alineamos la tecnología con los objetivos de tu negocio. Diseñamos planes directores de sistemas y evaluamos la madurez tecnológica de tu PYME.</p>
+                        <div class="bg-[#F5F7F9] rounded-2xl p-6 mb-6">
+                            <h3 class="font-semibold text-[#1F5F8B] mb-3 flex items-center">
+                                <i data-lucide="check-circle" class="w-5 h-5 mr-2 text-[#6FC1A7]"></i> Beneficios Clave
+                            </h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start text-sm text-[#163E59]/70"><span class="text-[#6FC1A7] mr-2 mt-0.5">•</span> Decisiones de inversión seguras</li>
+                                <li class="flex items-start text-sm text-[#163E59]/70"><span class="text-[#6FC1A7] mr-2 mt-0.5">•</span> Alineación negocio-tecnología</li>
+                                <li class="flex items-start text-sm text-[#163E59]/70"><span class="text-[#6FC1A7] mr-2 mt-0.5">•</span> Planificación a largo plazo</li>
+                            </ul>
+                        </div>
+                        <div class="border-l-4 border-[#1F5F8B] pl-4 py-1">
+                            <p class="text-sm font-semibold text-[#163E59]">Resultados Esperables:</p>
+                            <p class="text-[#1F5F8B] font-medium mt-1">Un roadmap tecnológico claro que guía el crecimiento sin gastos innecesarios.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl shadow-gray-200/50 border border-gray-100 flex flex-col h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="w-14 h-14 bg-gradient-to-br from-[#DFF3EA] to-[#6FC1A7]/30 rounded-2xl flex items-center justify-center mr-5">
+                                <i data-lucide="laptop" class="w-7 h-7 text-[#1F5F8B]"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-[#163E59]">Modernización de Sistemas Legacy</h2>
+                        </div>
+                        <p class="text-[#163E59]/80 mb-8 flex-grow text-lg leading-relaxed">Migramos y actualizamos software obsoleto (sistemas a medida antiguos, planillas Excel gigantes) hacia aplicaciones web y cloud modernas.</p>
+                        <div class="bg-[#F5F7F9] rounded-2xl p-6 mb-6">
+                            <h3 class="font-semibold text-[#1F5F8B] mb-3 flex items-center">
+                                <i data-lucide="check-circle" class="w-5 h-5 mr-2 text-[#6FC1A7]"></i> Beneficios Clave
+                            </h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start text-sm text-[#163E59]/70"><span class="text-[#6FC1A7] mr-2 mt-0.5">•</span> Acceso desde cualquier lugar (Cloud)</li>
+                                <li class="flex items-start text-sm text-[#163E59]/70"><span class="text-[#6FC1A7] mr-2 mt-0.5">•</span> Reducción de caídas de sistema</li>
+                                <li class="flex items-start text-sm text-[#163E59]/70"><span class="text-[#6FC1A7] mr-2 mt-0.5">•</span> Interfaces intuitivas</li>
+                            </ul>
+                        </div>
+                        <div class="border-l-4 border-[#1F5F8B] pl-4 py-1">
+                            <p class="text-sm font-semibold text-[#163E59]">Resultados Esperables:</p>
+                            <p class="text-[#1F5F8B] font-medium mt-1">Disponibilidad del 99.9% y reducción drástica de tiempos de soporte técnico.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl shadow-gray-200/50 border border-gray-100 flex flex-col h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="w-14 h-14 bg-gradient-to-br from-[#DFF3EA] to-[#6FC1A7]/30 rounded-2xl flex items-center justify-center mr-5">
+                                <i data-lucide="refresh-cw" class="w-7 h-7 text-[#1F5F8B]"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-[#163E59]">Mejora de Procesos mediante Tecnología</h2>
+                        </div>
+                        <p class="text-[#163E59]/80 mb-8 flex-grow text-lg leading-relaxed">Analizamos cómo trabaja tu equipo hoy e implementamos automatizaciones e integraciones para eliminar tareas repetitivas.</p>
+                        <div class="bg-[#F5F7F9] rounded-2xl p-6 mb-6">
+                            <h3 class="font-semibold text-[#1F5F8B] mb-3 flex items-center">
+                                <i data-lucide="check-circle" class="w-5 h-5 mr-2 text-[#6FC1A7]"></i> Beneficios Clave
+                            </h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start text-sm text-[#163E59]/70"><span class="text-[#6FC1A7] mr-2 mt-0.5">•</span> Reducción de errores humanos</li>
+                                <li class="flex items-start text-sm text-[#163E59]/70"><span class="text-[#6FC1A7] mr-2 mt-0.5">•</span> Optimización de horas de trabajo</li>
+                                <li class="flex items-start text-sm text-[#163E59]/70"><span class="text-[#6FC1A7] mr-2 mt-0.5">•</span> Trazabilidad de la información</li>
+                            </ul>
+                        </div>
+                        <div class="border-l-4 border-[#1F5F8B] pl-4 py-1">
+                            <p class="text-sm font-semibold text-[#163E59]">Resultados Esperables:</p>
+                            <p class="text-[#1F5F8B] font-medium mt-1">Hasta un 40% de ahorro en tiempo operativo para tareas administrativas.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl shadow-gray-200/50 border border-gray-100 flex flex-col h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="w-14 h-14 bg-gradient-to-br from-[#DFF3EA] to-[#6FC1A7]/30 rounded-2xl flex items-center justify-center mr-5">
+                                <i data-lucide="shield" class="w-7 h-7 text-[#1F5F8B]"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-[#163E59]">Seguridad Informática</h2>
+                        </div>
+                        <p class="text-[#163E59]/80 mb-8 flex-grow text-lg leading-relaxed">Protegemos tu activo más importante: la información. Implementamos backups automatizados, firewalls, y educamos a tu equipo.</p>
+                        <div class="bg-[#F5F7F9] rounded-2xl p-6 mb-6">
+                            <h3 class="font-semibold text-[#1F5F8B] mb-3 flex items-center">
+                                <i data-lucide="check-circle" class="w-5 h-5 mr-2 text-[#6FC1A7]"></i> Beneficios Clave
+                            </h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start text-sm text-[#163E59]/70"><span class="text-[#6FC1A7] mr-2 mt-0.5">•</span> Prevención de ransomware</li>
+                                <li class="flex items-start text-sm text-[#163E59]/70"><span class="text-[#6FC1A7] mr-2 mt-0.5">•</span> Backups inmutables</li>
+                                <li class="flex items-start text-sm text-[#163E59]/70"><span class="text-[#6FC1A7] mr-2 mt-0.5">•</span> Cumplimiento normativo</li>
+                            </ul>
+                        </div>
+                        <div class="border-l-4 border-[#1F5F8B] pl-4 py-1">
+                            <p class="text-sm font-semibold text-[#163E59]">Resultados Esperables:</p>
+                            <p class="text-[#1F5F8B] font-medium mt-1">Tranquilidad operativa y mitigación de riesgos de pérdida de datos a casi cero.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto mt-24 text-center px-4">
+                <h3 class="text-2xl font-bold text-[#163E59] mb-6">¿No estás seguro de qué necesita tu empresa?</h3>
+                <button onclick="navigateTo('contact')" class="bg-[#1F5F8B] text-white hover:bg-[#163E59] px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-flex items-center">
+                    Solicitar diagnóstico sin cargo <i data-lucide="chevron-right" class="ml-2 w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+
+        <!-- PAGE: ABOUT -->
+        <div id="page-about" class="page-section hidden animate-fade-in pb-20">
+            <div class="bg-[#F5F7F9] py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2">
+                        <span class="text-[#1F5F8B] font-bold tracking-wider uppercase text-sm mb-4 block">Sobre Nosotros</span>
+                        <h1 class="text-4xl md:text-5xl font-bold text-[#163E59] mb-6 leading-tight">Tu partner tecnológico de confianza</h1>
+                        <p class="text-lg text-[#163E59]/70 leading-relaxed mb-8">
+                            En OpenSource Consulting entendemos que para una PYME, la tecnología no debe ser un dolor de cabeza ni un gasto oscuro, sino una herramienta clara para crecer, competir y dormir tranquilos.
+                        </p>
+                        <button onclick="navigateTo('contact')" class="bg-[#6FC1A7] text-[#163E59] hover:bg-[#5FA8A5] hover:text-white px-8 py-3 rounded-full font-bold transition-all shadow-md">
+                            Hablemos de tu negocio
+                        </button>
+                    </div>
+                    <div class="md:w-1/2 relative">
+                        <div class="aspect-square bg-gradient-to-tr from-[#2E7FA3] to-[#A7D1B5] rounded-[3rem] p-1 transform rotate-3">
+                            <div class="w-full h-full bg-white rounded-[2.8rem] flex flex-col items-center justify-center p-8 transform -rotate-3 text-center shadow-inner">
+                                <div class="w-20 h-20 bg-[#DFF3EA] rounded-full flex items-center justify-center mb-6">
+                                    <i data-lucide="activity" class="w-10 h-10 text-[#1F5F8B]"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-[#163E59] mb-2">+10 Años</h3>
+                                <p class="text-[#163E59]/70">Transformando PYMEs con tecnología</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                            <!-- SECCIÓN DE FUNDADORES (Nueva) -->
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold mb-4">Nuestro Equipo Directivo</h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto">Los 4 pilares estratégicos de nuestra consultora.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Fundador 1 -->
+                    <div class="text-center group">
+                        <div class="relative w-48 h-48 mx-auto mb-6">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=300&h=300" class="w-full h-full object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform" alt="Fundador 1">
+                        </div>
+                        <h4 class="text-xl font-bold">Carlos Mendoza</h4>
+                        <p class="text-[#1F5F8B] font-medium">CEO & Co-Fundador</p>
+                    </div>
+                    <!-- Fundador 2 -->
+                    <div class="text-center group">
+                        <div class="relative w-48 h-48 mx-auto mb-6">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300&h=300" class="w-full h-full object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform" alt="Fundadora 2">
+                        </div>
+                        <h4 class="text-xl font-bold">Lucía Valente</h4>
+                        <p class="text-[#1F5F8B] font-medium">Directora de Seguridad</p>
+                    </div>
+                    <!-- Fundador 3 -->
+                    <div class="text-center group">
+                        <div class="relative w-48 h-48 mx-auto mb-6">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=300&h=300" class="w-full h-full object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform" alt="Fundador 3">
+                        </div>
+                        <h4 class="text-xl font-bold">Martín Ortega</h4>
+                        <p class="text-[#1F5F8B] font-medium">CTO & Arquitecto</p>
+                    </div>
+                    <!-- Fundador 4 -->
+                    <div class="text-center group">
+                        <div class="relative w-48 h-48 mx-auto mb-6">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=300&h=300" class="w-full h-full object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform" alt="Fundadora 4">
+                        </div>
+                        <h4 class="text-xl font-bold">Elena Ricci</h4>
+                        <p class="text-[#1F5F8B] font-medium">Directora de Operaciones</p>
+                    </div>
+                </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-[#163E59]">Nuestros Pilares</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="text-center relative">
+                        <div class="w-16 h-16 mx-auto bg-[#DFF3EA] rounded-2xl rotate-45 flex items-center justify-center mb-8">
+                            <div class="-rotate-45 font-bold text-2xl text-[#1F5F8B]">1</div>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#163E59] mb-4">Claridad</h3>
+                        <p class="text-[#163E59]/70">Hablamos tu idioma. Evitamos el lenguaje técnico innecesario para que entiendas exactamente en qué estás invirtiendo.</p>
+                    </div>
+                    <div class="text-center relative">
+                        <div class="w-16 h-16 mx-auto bg-[#DFF3EA] rounded-2xl rotate-45 flex items-center justify-center mb-8">
+                            <div class="-rotate-45 font-bold text-2xl text-[#1F5F8B]">2</div>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#163E59] mb-4">Confiabilidad</h3>
+                        <p class="text-[#163E59]/70">Implementamos soluciones robustas. Si construimos algo, está hecho para durar y funcionar sin intervenciones constantes.</p>
+                    </div>
+                    <div class="text-center relative">
+                        <div class="w-16 h-16 mx-auto bg-[#DFF3EA] rounded-2xl rotate-45 flex items-center justify-center mb-8">
+                            <div class="-rotate-45 font-bold text-2xl text-[#1F5F8B]">3</div>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#163E59] mb-4">Resultados</h3>
+                        <p class="text-[#163E59]/70">No instalamos software por instalar. Cada acción tiene un KPI asociado: reducir horas, bajar costos o asegurar datos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PAGE: CONTACT -->
+        <div id="page-contact" class="page-section hidden animate-fade-in py-20 bg-[#F5F7F9]">
+            
+            <!-- Contact Form Container -->
+            <div id="contact-form-container" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-[2.5rem] shadow-xl overflow-hidden flex flex-col md:flex-row">
+                    <!-- Info Side -->
+                    <div class="bg-gradient-to-br from-[#163E59] to-[#1F5F8B] md:w-2/5 p-10 text-white flex flex-col justify-between">
+                        <div>
+                            <h2 class="text-3xl font-bold mb-4">Da el primer paso</h2>
+                            <p class="text-[#DFF3EA] mb-8 leading-relaxed">
+                                Solicita una auditoría o diagnóstico inicial. Analizaremos tu infraestructura actual y te propondremos mejoras con impacto real en el negocio.
+                            </p>
+                            <div class="bg-white/10 rounded-xl p-6 backdrop-blur-sm border border-white/20 mt-8">
+                                <i data-lucide="unlock" class="w-8 h-8 text-[#6FC1A7] mb-3"></i>
+                                <h4 class="font-bold text-lg mb-2">Bonus Exclusivo</h4>
+                                <p class="text-sm text-white/80">
+                                    Al enviar el formulario, recibirás la contraseña de acceso a nuestro dashboard de Casos de Éxito privados.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Form Side -->
+                    <div class="md:w-3/5 p-10 md:p-14">
+                        <h3 class="text-2xl font-bold text-[#163E59] mb-8">Formulario de Contacto</h3>
+                        <form onsubmit="handleContactSubmit(event)" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-[#163E59] mb-2">Nombre completo</label>
+                                    <input required type="text" class="w-full bg-[#F5F7F9] border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6FC1A7] focus:border-transparent transition-all" placeholder="Juan Pérez">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-[#163E59] mb-2">Empresa</label>
+                                    <input required type="text" class="w-full bg-[#F5F7F9] border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6FC1A7] focus:border-transparent transition-all" placeholder="Mi Empresa S.A.">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-[#163E59] mb-2">Email corporativo</label>
+                                <input required type="email" class="w-full bg-[#F5F7F9] border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6FC1A7] focus:border-transparent transition-all" placeholder="juan@miempresa.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-[#163E59] mb-2">¿Cuál es tu principal desafío IT hoy?</label>
+                                <select class="w-full bg-[#F5F7F9] border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6FC1A7] focus:border-transparent transition-all text-[#163E59]">
+                                    <option>Sistemas lentos u obsoletos</option>
+                                    <option>Preocupación por seguridad/hackeos</option>
+                                    <option>Procesos muy manuales</option>
+                                    <option>Necesito auditoría general</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full bg-[#1F5F8B] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#163E59] transition-all shadow-md hover:shadow-lg mt-4">
+                                Solicitar diagnóstico
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Success Message (Hidden by default) -->
+            <div id="contact-success-container" class="hidden min-h-[60vh] flex items-center justify-center p-4">
+                <div class="bg-white max-w-2xl w-full p-10 rounded-3xl shadow-2xl text-center border-t-8 border-[#6FC1A7]">
+                    <i data-lucide="check-circle" class="w-20 h-20 text-[#6FC1A7] mx-auto mb-6"></i>
+                    <h2 class="text-3xl font-bold text-[#163E59] mb-4">¡Mensaje enviado con éxito!</h2>
+                    <p class="text-lg text-[#163E59]/80 mb-8">
+                        Un consultor se pondrá en contacto a la brevedad para coordinar tu diagnóstico.
+                    </p>
+                    <div class="bg-[#F5F7F9] rounded-2xl p-8 mb-8 border border-[#DFF3EA]">
+                        <i data-lucide="lock" class="w-8 h-8 text-[#1F5F8B] mx-auto mb-3"></i>
+                        <p class="font-semibold text-[#163E59] mb-4">Como prometimos, aquí tienes tu acceso a nuestros Casos de Éxito confidenciales:</p>
+                        <div class="bg-white border-2 border-[#1F5F8B] border-dashed rounded-xl p-4 inline-block">
+                            <span class="font-mono text-2xl font-bold tracking-widest text-[#1F5F8B] select-all">EXITOPYME</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-4">Copia esta contraseña y accede a la sección.</p>
+                    </div>
+                    <button onclick="navigateTo('cases')" class="bg-[#1F5F8B] text-white px-8 py-4 rounded-full font-bold hover:bg-[#163E59] transition-colors">
+                        Ir a Casos de Éxito
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PAGE: CASES -->
+        <div id="page-cases" class="page-section hidden animate-fade-in">
+            
+            <!-- Locked State -->
+            <div id="cases-locked" class="min-h-[80vh] flex items-center justify-center p-4 bg-[#F5F7F9] relative overflow-hidden">
+                <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-[#DFF3EA] rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#6FC1A7]/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+
+                <div class="bg-white max-w-md w-full p-10 rounded-[2rem] shadow-2xl relative z-10 text-center border border-gray-100">
+                    <div class="w-20 h-20 bg-[#F5F7F9] rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="lock" class="w-10 h-10 text-[#1F5F8B]"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-[#163E59] mb-2">Área Restringida</h2>
+                    <p class="text-[#163E59]/70 mb-8 text-sm">
+                        Nuestros casos de éxito contienen métricas reales y arquitecturas de clientes. Ingresa la contraseña para acceder.
+                    </p>
+                    <form onsubmit="handlePasswordSubmit(event)">
+                        <div class="mb-6 relative">
+                            <input id="cases-password-input" type="password" placeholder="Contraseña de acceso" class="w-full bg-[#F5F7F9] border border-gray-200 focus:ring-[#6FC1A7] rounded-xl px-4 py-3 text-center tracking-widest focus:outline-none focus:ring-2 focus:border-transparent transition-all">
+                            <p id="password-error" class="hidden text-red-500 text-xs mt-2 font-medium">Contraseña incorrecta.</p>
+                        </div>
+                        <button type="submit" class="w-full bg-[#1F5F8B] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#163E59] transition-all">
+                            Desbloquear Casos
+                        </button>
+                    </form>
+                    <div class="mt-8 pt-6 border-t border-gray-100">
+                        <p class="text-sm text-gray-500 mb-3">¿Aún no tienes la contraseña?</p>
+                        <button onclick="navigateTo('contact')" class="text-[#1F5F8B] font-semibold hover:text-[#6FC1A7] transition-colors">
+                            Completa el formulario para obtenerla &rarr;
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unlocked State (Dashboard) -->
+            <div id="cases-unlocked" class="hidden bg-[#F5F7F9] min-h-screen pb-20">
+                <div class="bg-[#163E59] py-12 px-4 border-b-4 border-[#6FC1A7]">
+                    <div class="max-w-7xl mx-auto flex items-center justify-between text-white">
+                        <div>
+                            <span class="bg-[#6FC1A7] text-[#163E59] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Confidencial</span>
+                            <h1 class="text-3xl md:text-4xl font-bold">Dashboard de Resultados</h1>
+                        </div>
+                        <i data-lucide="unlock" class="w-10 h-10 text-[#DFF3EA] opacity-50 hidden md:block"></i>
+                    </div>
+                </div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 space-y-12">
+                    <!-- Case Study 1 -->
+                    <div class="bg-white rounded-[2rem] shadow-lg overflow-hidden border border-gray-200">
+                        <div class="p-8 md:p-10 border-b border-gray-100">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i data-lucide="laptop" class="w-6 h-6 text-[#1F5F8B]"></i>
+                                <h2 class="text-2xl font-bold text-[#163E59]">Modernización ERP para Logística PyME</h2>
+                            </div>
+                            <p class="text-gray-600 text-lg">Migración de sistema on-premise obsoleto a infraestructura Cloud escalable.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-3">
+                            <!-- Timeline Column -->
+                            <div class="p-8 md:p-10 lg:col-span-1 bg-[#F5F7F9] border-r border-gray-100">
+                                <h3 class="font-bold text-[#1F5F8B] mb-6 flex items-center"><i data-lucide="clock" class="w-5 h-5 mr-2"></i> Fases del Proyecto</h3>
+                                <div class="space-y-6 relative before:absolute before:inset-0 before:ml-2.5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-[#2E7FA3] before:to-transparent">
+                                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                        <div class="flex items-center justify-center w-6 h-6 rounded-full border-4 border-white bg-[#1F5F8B] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow"></div>
+                                        <div class="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] p-4 rounded-xl border border-gray-200 bg-white shadow-sm">
+                                            <div class="font-bold text-[#163E59] text-sm mb-1">Antes</div>
+                                            <div class="text-xs text-gray-500">Caídas semanales, acceso solo desde oficina, backups manuales.</div>
+                                        </div>
+                                    </div>
+                                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                        <div class="flex items-center justify-center w-6 h-6 rounded-full border-4 border-white bg-[#5FA8A5] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow"></div>
+                                        <div class="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] p-4 rounded-xl border border-gray-200 bg-white shadow-sm">
+                                            <div class="font-bold text-[#163E59] text-sm mb-1">Durante (3 meses)</div>
+                                            <div class="text-xs text-gray-500">Migración a AWS sin downtime operativo. Capacitación de 20 usuarios.</div>
+                                        </div>
+                                    </div>
+                                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                        <div class="flex items-center justify-center w-6 h-6 rounded-full border-4 border-white bg-[#6FC1A7] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow"></div>
+                                        <div class="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] p-4 rounded-xl border border-gray-200 bg-[#DFF3EA] shadow-sm">
+                                            <div class="font-bold text-[#1F5F8B] text-sm mb-1">Después</div>
+                                            <div class="text-xs text-[#163E59]">Acceso 24/7 web, alta disponibilidad, backups automáticos.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Metrics Column -->
+                            <div class="p-8 md:p-10 lg:col-span-2">
+                                <h3 class="font-bold text-[#1F5F8B] mb-6 flex items-center"><i data-lucide="bar-chart" class="w-5 h-5 mr-2"></i> Impacto y KPIs</h3>
+                                
+                                <div class="grid grid-cols-2 gap-4 mb-8">
+                                    <div class="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm text-center">
+                                        <p class="text-sm text-gray-500 font-medium mb-1">Disponibilidad Sistema</p>
+                                        <p class="text-3xl font-extrabold text-[#6FC1A7]">99.9%</p>
+                                        <p class="text-xs text-green-600 mt-2 flex items-center justify-center"><i data-lucide="trending-up" class="w-3 h-3 mr-1"></i> Antes: 85%</p>
+                                    </div>
+                                    <div class="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm text-center">
+                                        <p class="text-sm text-gray-500 font-medium mb-1">Costos de Mantenimiento</p>
+                                        <p class="text-3xl font-extrabold text-[#1F5F8B]">-40%</p>
+                                        <p class="text-xs text-gray-500 mt-2">Reducción servidores físicos</p>
+                                    </div>
+                                </div>
+
+                                <!-- Visual Mock Chart -->
+                                <div class="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm">
+                                    <p class="text-sm text-gray-500 font-medium mb-4 text-center">Tiempos de procesamiento (Horas/Mes)</p>
+                                    <div class="flex items-end justify-center gap-8 h-32 mt-4">
+                                        <div class="flex flex-col items-center">
+                                            <div class="w-16 bg-[#163E59] opacity-30 rounded-t-md h-[100%] animate-pulse relative group">
+                                                <span class="absolute -top-6 text-xs font-bold text-gray-500">120h</span>
+                                            </div>
+                                            <span class="text-xs mt-2 font-medium text-gray-500">Pre-Migración</span>
+                                        </div>
+                                        <div class="flex flex-col items-center">
+                                            <div class="w-16 bg-[#6FC1A7] rounded-t-md h-[30%] shadow-lg relative">
+                                            <span class="absolute -top-6 text-xs font-bold text-[#1F5F8B]">36h</span>
+                                            </div>
+                                            <span class="text-xs mt-2 font-bold text-[#1F5F8B]">Post-Migración</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Call to action inside protected area -->
+                    <div class="bg-gradient-to-r from-[#2E7FA3] to-[#5FA8A5] rounded-3xl p-10 text-center text-white shadow-xl">
+                        <h3 class="text-2xl font-bold mb-4">¿Querés ver estos resultados en tu empresa?</h3>
+                        <p class="mb-6 opacity-90 max-w-2xl mx-auto">Nuestro equipo está listo para analizar tu infraestructura y presentar una propuesta tecnológica orientada a retorno de inversión.</p>
+                        <button onclick="navigateTo('contact')" class="bg-white text-[#1F5F8B] px-8 py-3 rounded-full font-bold hover:bg-[#DFF3EA] transition-colors shadow-lg">
+                            Agendar reunión técnica
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#163E59] text-[#F5F7F9] pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-[#1F5F8B] pb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#2E7FA3] to-[#A7D1B5] flex items-center justify-center mr-2">
+                            <i data-lucide="server" class="text-white w-4 h-4"></i>
+                        </div>
+                        <span class="font-bold text-xl text-white">OpenSource Consulting</span>
+                    </div>
+                    <p class="text-[#DFF3EA] opacity-80 max-w-md">
+                        Transformamos la tecnología en el motor de crecimiento de tu PYME. Soluciones seguras, eficientes y modernas.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Enlaces Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><button onclick="navigateTo('home')" class="hover:text-[#6FC1A7] transition-colors">Inicio</button></li>
+                        <li><button onclick="navigateTo('services')" class="hover:text-[#6FC1A7] transition-colors">Servicios</button></li>
+                        <li><button onclick="navigateTo('cases')" class="hover:text-[#6FC1A7] transition-colors">Casos de Éxito</button></li>
+                        <li><button onclick="navigateTo('about')" class="hover:text-[#6FC1A7] transition-colors">Sobre Nosotros</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contacto</h4>
+                    <ul class="space-y-2 text-[#DFF3EA] opacity-80">
+                        <li>contacto@opensourceconsulting.com</li>
+                        <li>+54 11 1234 5678</li>
+                        <li>Buenos Aires, Argentina</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center pt-8 text-sm opacity-60">
+                &copy; <span id="year"></span> OpenSource Consulting. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // Inicializar iconos de Lucide
+        lucide.createIcons();
+
+        // Setear año actual en footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Variables globales
+        const CORRECT_PASSWORD = "EXITOPYME";
+        let isCasesUnlocked = false;
+
+        // Función para cambiar de página
+        function navigateTo(pageId) {
+            // Ocultar todas las páginas
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('block');
+            });
+
+            // Mostrar la página destino
+            document.getElementById('page-' + pageId).classList.remove('hidden');
+            document.getElementById('page-' + pageId).classList.add('block');
+
+            // Actualizar estilos de los links de navegación en Desktop
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if(link.getAttribute('data-target') === pageId) {
+                    link.classList.add('text-[#1F5F8B]', 'border-b-2', 'border-[#6FC1A7]');
+                    link.classList.remove('text-[#163E59]');
+                } else {
+                    link.classList.remove('text-[#1F5F8B]', 'border-b-2', 'border-[#6FC1A7]');
+                    link.classList.add('text-[#163E59]');
+                }
+            });
+
+            // Actualizar estilos de los links en Mobile
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileLinks.forEach(link => {
+                if(link.getAttribute('data-target') === pageId) {
+                    link.classList.add('bg-[#DFF3EA]', 'text-[#1F5F8B]');
+                    link.classList.remove('text-[#163E59]', 'hover:bg-[#F5F7F9]');
+                } else {
+                    link.classList.remove('bg-[#DFF3EA]', 'text-[#1F5F8B]');
+                    link.classList.add('text-[#163E59]', 'hover:bg-[#F5F7F9]');
+                }
+            });
+
+            // Cerrar menú móvil si está abierto
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(!mobileMenu.classList.contains('hidden')) {
+                toggleMobileMenu();
+            }
+
+            // Hacer scroll hacia arriba
+            window.scrollTo(0, 0);
+        }
+
+        // Función para abrir/cerrar el menú móvil
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const iconMenu = document.getElementById('menu-icon');
+            const iconClose = document.getElementById('close-icon');
+            
+            if(menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                iconMenu.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+                iconMenu.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+        }
+
+        // Función para enviar formulario de contacto
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            document.getElementById('contact-form-container').classList.add('hidden');
+            document.getElementById('contact-success-container').classList.remove('hidden');
+            document.getElementById('contact-success-container').classList.add('flex');
+        }
+
+        // Función para intentar desbloquear casos de éxito
+        function handlePasswordSubmit(event) {
+            event.preventDefault();
+            const passwordInput = document.getElementById('cases-password-input');
+            const errorMsg = document.getElementById('password-error');
+            
+            if (passwordInput.value === CORRECT_PASSWORD) {
+                isCasesUnlocked = true;
+                // Ocultar sección bloqueada y mostrar el dashboard
+                document.getElementById('cases-locked').classList.add('hidden');
+                document.getElementById('cases-locked').classList.remove('flex');
+                
+                document.getElementById('cases-unlocked').classList.remove('hidden');
+                document.getElementById('cases-unlocked').classList.add('block');
+                
+                // Limpiar errores
+                passwordInput.classList.remove('border-red-400', 'focus:ring-red-400');
+                passwordInput.classList.add('border-gray-200', 'focus:ring-[#6FC1A7]');
+                errorMsg.classList.add('hidden');
+            } else {
+                // Mostrar error
+                passwordInput.classList.add('border-red-400', 'focus:ring-red-400');
+                passwordInput.classList.remove('border-gray-200', 'focus:ring-[#6FC1A7]');
+                errorMsg.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

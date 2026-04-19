@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenSource Consulting</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Styles / Animations -->
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F5F7F9; }
+        ::-webkit-scrollbar-thumb { background: #1F5F8B; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #163E59; }
+        
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+    </style>
+</head>
+<body class="bg-[#F5F7F9] font-sans text-[#163E59] antialiased">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2E7FA3] to-[#A7D1B5] flex items-center justify-center mr-3 shadow-sm">
+                        <i data-lucide="server" class="text-white w-6 h-6"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-[#163E59]">
+                        OpenSource <span class="font-light text-[#1F5F8B]">Consulting</span>
+                    </span>
+                </div>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <button data-target="home" onclick="navigateTo('home')" class="nav-link text-sm font-medium transition-colors hover:text-[#6FC1A7] text-[#1F5F8B] border-b-2 border-[#6FC1A7]">Inicio</button>
+                    <button data-target="services" onclick="navigateTo('services')" class="nav-link text-sm font-medium transition-colors hover:text-[#6FC1A7] text-[#163E59]">Servicios</button>
+                    <button data-target="about" onclick="navigateTo('about')" class="nav-link text-sm font-medium transition-colors hover:text-[#6FC1A7] text-[#163E59]">Sobre Nosotros</button>
+                    <button data-target="cases" onclick="navigateTo('cases')" class="nav-link text-sm font-medium transition-colors hover:text-[#6FC1A7] text-[#163E59]">Casos de Éxito</button>
+                    <button data-target="contact" onclick="navigateTo('contact')" class="nav-link text-sm font-medium transition-colors hover:text-[#6FC1A7] text-[#163E59]">Contacto</button>
+                    
+                    <button onclick="navigateTo('contact')" class="bg-[#1F5F8B] hover:bg-[#163E59] text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        Solicitar diagnóstico
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-[#163E59] hover:text-[#1F5F8B] focus:outline-none">
+                        <i data-lucide="menu" id="menu-icon" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-[#F5F7F9] shadow-lg absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <button onclick="navigateTo('home')" class="block w-full text-left px-3 py-4 rounded-md text-base font-medium text-[#163E59]">Inicio</button>
+                <button onclick="navigateTo('services')" class="block w-full text-left px-3 py-4 rounded-md text-base font-medium text-[#163E59]">Servicios</button>
+                <button onclick="navigateTo('about')" class="block w-full text-left px-3 py-4 rounded-md text-base font-medium text-[#163E59]">Sobre Nosotros</button>
+                <button onclick="navigateTo('cases')" class="block w-full text-left px-3 py-4 rounded-md text-base font-medium text-[#163E59]">Casos de Éxito</button>
+                <button onclick="navigateTo('contact')" class="block w-full text-left px-3 py-4 rounded-md text-base font-medium text-[#163E59]">Contacto</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="pt-20">
+        
+        <!-- PAGE: HOME -->
+        <div id="page-home" class="page-section active animate-fade-in">
+            <section class="relative bg-gradient-to-r from-[#2E7FA3] via-[#5FA8A5] to-[#A7D1B5] py-32 text-center text-white">
+                <div class="max-w-7xl mx-auto px-4">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-6">Potenciamos tu PYME</h1>
+                    <p class="text-xl mb-10 max-w-2xl mx-auto">Tecnología inteligente para resolver problemas reales.</p>
+                    <div class="flex justify-center gap-4">
+                        <button onclick="navigateTo('about')" class="bg-white text-[#1F5F8B] px-8 py-4 rounded-full font-bold shadow-xl hover:bg-gray-100 transition-all">Conócenos</button>
+                        <button onclick="navigateTo('services')" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-[#1F5F8B] transition-all">Nuestros Servicios</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Quick Features -->
+            <section class="py-20 max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 bg-white rounded-3xl shadow-sm border border-gray-100">
+                    <i data-lucide="zap" class="text-[#6FC1A7] mb-4 w-10 h-10"></i>
+                    <h3 class="text-xl font-bold mb-2">Implementación Rápida</h3>
+                    <p class="text-gray-500">Soluciones que funcionan desde el primer día.</p>
+                </div>
+                <div class="p-8 bg-white rounded-3xl shadow-sm border border-gray-100">
+                    <i data-lucide="shield-check" class="text-[#2E7FA3] mb-4 w-10 h-10"></i>
+                    <h3 class="text-xl font-bold mb-2">Seguridad Total</h3>
+                    <p class="text-gray-500">Protegemos el activo más valioso: tus datos.</p>
+                </div>
+                <div class="p-8 bg-white rounded-3xl shadow-sm border border-gray-100">
+                    <i data-lucide="trending-up" class="text-[#A7D1B5] mb-4 w-10 h-10"></i>
+                    <h3 class="text-xl font-bold mb-2">Escalabilidad</h3>
+                    <p class="text-gray-500">Crecemos al ritmo de tu negocio.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE: SERVICES -->
+        <div id="page-services" class="page-section animate-fade-in py-20">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl md:text-5xl font-bold text-center mb-16 text-[#163E59]">Servicios Especializados</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div class="bg-white p-10 rounded-[2.5rem] shadow-lg border border-gray-100 hover:shadow-2xl transition-all">
+                        <div class="w-14 h-14 bg-[#DFF3EA] rounded-2xl flex items-center justify-center mb-6 text-[#1F5F8B]">
+                            <i data-lucide="cloud" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Migración Cloud</h3>
+                        <p class="text-gray-600 mb-6">Llevamos tus sistemas a la nube con mínima interrupción operativa.</p>
+                    </div>
+                    <div class="bg-white p-10 rounded-[2.5rem] shadow-lg border border-gray-100 hover:shadow-2xl transition-all">
+                        <div class="w-14 h-14 bg-[#DFF3EA] rounded-2xl flex items-center justify-center mb-6 text-[#1F5F8B]">
+                            <i data-lucide="code" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Software a Medida</h3>
+                        <p class="text-gray-600 mb-6">Desarrollamos las herramientas que tu equipo realmente necesita.</p>
+                    </div>
+                    <div class="bg-white p-10 rounded-[2.5rem] shadow-lg border border-gray-100 hover:shadow-2xl transition-all">
+                        <div class="w-14 h-14 bg-[#DFF3EA] rounded-2xl flex items-center justify-center mb-6 text-[#1F5F8B]">
+                            <i data-lucide="lock" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Auditoría IT</h3>
+                        <p class="text-gray-600 mb-6">Diagnóstico completo de tu infraestructura y puntos ciegos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: ABOUT -->
+        <div id="page-about" class="page-section animate-fade-in py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Historia original -->
+                <div class="flex flex-col md:flex-row items-center gap-12 mb-24">
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl md:text-5xl font-bold mb-6">Nuestra Misión</h2>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                            En OpenSource Consulting, creemos que la tecnología no debería ser un privilegio de las grandes corporaciones. Nuestra misión es empoderar a las PYMEs mediante soluciones tecnológicas robustas, seguras y escalables.
+                        </p>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            Contamos con un equipo interdisciplinario que entiende que detrás de cada servidor y cada línea de código, hay un negocio que necesita crecer.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" class="rounded-3xl shadow-xl" alt="Equipo de trabajo">
+                    </div>
+                </div>
+
+                <!-- SECCIÓN DE FUNDADORES (Nueva) -->
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold mb-4">Nuestro Equipo Directivo</h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto">Los 4 pilares estratégicos de nuestra consultora.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Fundador 1 -->
+                    <div class="text-center group">
+                        <div class="relative w-48 h-48 mx-auto mb-6">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=300&h=300" class="w-full h-full object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform" alt="Fundador 1">
+                        </div>
+                        <h4 class="text-xl font-bold">Carlos Mendoza</h4>
+                        <p class="text-[#1F5F8B] font-medium">CEO & Co-Fundador</p>
+                    </div>
+                    <!-- Fundador 2 -->
+                    <div class="text-center group">
+                        <div class="relative w-48 h-48 mx-auto mb-6">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300&h=300" class="w-full h-full object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform" alt="Fundadora 2">
+                        </div>
+                        <h4 class="text-xl font-bold">Lucía Valente</h4>
+                        <p class="text-[#1F5F8B] font-medium">Directora de Seguridad</p>
+                    </div>
+                    <!-- Fundador 3 -->
+                    <div class="text-center group">
+                        <div class="relative w-48 h-48 mx-auto mb-6">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=300&h=300" class="w-full h-full object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform" alt="Fundador 3">
+                        </div>
+                        <h4 class="text-xl font-bold">Martín Ortega</h4>
+                        <p class="text-[#1F5F8B] font-medium">CTO & Arquitecto</p>
+                    </div>
+                    <!-- Fundador 4 -->
+                    <div class="text-center group">
+                        <div class="relative w-48 h-48 mx-auto mb-6">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=300&h=300" class="w-full h-full object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform" alt="Fundadora 4">
+                        </div>
+                        <h4 class="text-xl font-bold">Elena Ricci</h4>
+                        <p class="text-[#1F5F8B] font-medium">Directora de Operaciones</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: CASES -->
+        <div id="page-cases" class="page-section animate-fade-in py-20">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl md:text-5xl font-bold text-center mb-16">Casos de Éxito</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white overflow-hidden rounded-3xl shadow-lg group">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=600" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" alt="Caso Logística">
+                        <div class="p-8">
+                            <span class="text-[#6FC1A7] font-bold text-sm">LOGÍSTICA</span>
+                            <h3 class="text-2xl font-bold mt-2 mb-4">Optimización de Inventario 4.0</h3>
+                            <p class="text-gray-600">Reducción del 30% en costos de almacenamiento mediante IA.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white overflow-hidden rounded-3xl shadow-lg group">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=600" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" alt="Caso Fintech">
+                        <div class="p-8">
+                            <span class="text-[#2E7FA3] font-bold text-sm">FINTECH</span>
+                            <h3 class="text-2xl font-bold mt-2 mb-4">Infraestructura Segura Bancaria</h3>
+                            <p class="text-gray-600">Migración exitosa a nube híbrida cumpliendo normativas BCRA.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: CONTACT -->
+        <div id="page-contact" class="page-section animate-fade-in py-20">
+            <div class="max-w-3xl mx-auto px-4">
+                <div class="bg-white p-12 rounded-[3rem] shadow-2xl">
+                    <h2 class="text-3xl font-bold mb-8 text-center">Inicia tu Transformación</h2>
+                    <form class="space-y-6" onsubmit="event.preventDefault(); alert('Mensaje enviado con éxito. Nos contactaremos pronto.');">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nombre Completo</label>
+                            <input type="text" class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#1F5F8B] outline-none transition-all" placeholder="Juan Pérez">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Correo Corporativo</label>
+                            <input type="email" class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#1F5F8B] outline-none transition-all" placeholder="juan@tuempresa.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Mensaje</label>
+                            <textarea rows="4" class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#1F5F8B] outline-none transition-all" placeholder="Cuéntanos sobre tu desafío tecnológico..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-[#1F5F8B] text-white py-5 rounded-2xl font-bold text-lg hover:bg-[#163E59] transition-all shadow-lg">
+                            Enviar Solicitud
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#163E59] text-[#F5F7F9] pt-16 pb-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-[#1F5F8B] pb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center justify-center md:justify-start mb-4">
+                        <i data-lucide="server" class="text-[#6FC1A7] w-8 h-8 mr-2"></i>
+                        <span class="font-bold text-xl text-white">OpenSource Consulting</span>
+                    </div>
+                    <p class="text-[#DFF3EA] opacity-80 max-w-md">Liderando la transformación digital de las PYMEs con soluciones de código abierto y arquitecturas modernas.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Navegación</h4>
+                    <ul class="space-y-2 opacity-80">
+                        <li><button onclick="navigateTo('home')" class="hover:text-[#6FC1A7]">Inicio</button></li>
+                        <li><button onclick="navigateTo('services')" class="hover:text-[#6FC1A7]">Servicios</button></li>
+                        <li><button onclick="navigateTo('about')" class="hover:text-[#6FC1A7]">Sobre Nosotros</button></li>
+                        <li><button onclick="navigateTo('contact')" class="hover:text-[#6FC1A7]">Contacto</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contacto</h4>
+                    <p class="opacity-80">info@opensource.com.ar</p>
+                    <p class="opacity-80">+54 11 1234-5678</p>
+                    <p class="opacity-80">Buenos Aires, Argentina</p>
+                </div>
+            </div>
+            <div class="text-center pt-8 text-sm opacity-60">
+                &copy; <span id="year"></span> OpenSource Consulting. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navigation Logic
+        function navigateTo(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => { 
+                page.classList.remove('active');
+            });
+            
+            // Show target page
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Update Nav Links UI
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if(link.getAttribute('data-target') === pageId) {
+                    link.classList.add('text-[#1F5F8B]', 'border-b-2', 'border-[#6FC1A7]');
+                    link.classList.remove('text-[#163E59]');
+                } else {
+                    link.classList.remove('text-[#1F5F8B]', 'border-b-2', 'border-[#6FC1A7]');
+                    link.classList.add('text-[#163E59]');
+                }
+            });
+
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Ensure page starts at home on refresh
+        window.onload = () => {
+            navigateTo('home');
+        };
+    </script>
+</body>
+</html>
