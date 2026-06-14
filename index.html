@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenSource Consulting</title>
     
-    <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Lucide Icons (CDN) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Custom Styles / Animations -->
     <style>
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -29,11 +26,9 @@
 </head>
 <body class="bg-[#F5F7F9] font-sans text-[#163E59] antialiased">
 
-    <!-- NAVBAR -->
     <nav class="bg-white shadow-sm fixed w-full z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20">
-                <!-- Logo -->
                 <div class="flex items-center cursor-pointer" onclick="navigateTo('home')">
                     <img src="assets/logo.svg" class="h-14 w-auto mr-3" alt="OpenSource Consulting Logo" />
 
@@ -42,7 +37,6 @@
                     </span>
                 </div>
 
-                <!-- Desktop Nav -->
                 <div class="hidden md:flex items-center space-x-8">
                     <button data-target="home" onclick="navigateTo('home')" class="nav-link text-sm font-medium transition-colors hover:text-[#6FC1A7] text-[#1F5F8B] border-b-2 border-[#6FC1A7]">Inicio</button>
                     <button data-target="services" onclick="navigateTo('services')" class="nav-link text-sm font-medium transition-colors hover:text-[#6FC1A7] text-[#163E59]">Servicios</button>
@@ -55,7 +49,6 @@
                     </button>
                 </div>
 
-                <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
                     <button onclick="toggleMobileMenu()" class="text-[#163E59] hover:text-[#1F5F8B] focus:outline-none">
                         <i data-lucide="menu" id="menu-icon" class="h-6 w-6"></i>
@@ -65,7 +58,6 @@
             </div>
         </div>
 
-        <!-- Mobile Nav -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-[#F5F7F9] shadow-lg absolute w-full">
             <div class="px-4 pt-2 pb-6 space-y-1">
                 <button data-target="home" onclick="navigateTo('home')" class="mobile-nav-link block w-full text-left px-3 py-4 rounded-md text-base font-medium bg-[#DFF3EA] text-[#1F5F8B]">Inicio</button>
@@ -81,12 +73,9 @@
         </div>
     </nav>
 
-    <!-- MAIN CONTENT -->
     <main class="pt-20">
         
-        <!-- PAGE: HOME -->
         <div id="page-home" class="page-section animate-fade-in block">
-            <!-- HERO SECTION -->
             <section class="relative bg-gradient-to-r from-[#2E7FA3] via-[#5FA8A5] to-[#A7D1B5] overflow-hidden py-32 lg:py-40">
                 <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-[100px] opacity-20 animate-pulse"></div>
                 <div class="absolute bottom-[-20%] right-[-10%] w-[40rem] h-[40rem] bg-[#163E59] rounded-full mix-blend-overlay filter blur-[120px] opacity-10"></div>
@@ -112,7 +101,6 @@
                 </div>
             </section>
 
-            <!-- BENEFITS SECTION -->
             <section class="py-20 bg-white">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center mb-16">
@@ -146,7 +134,6 @@
                 </div>
             </section>
 
-            <!-- SERVICES PREVIEW -->
             <section class="py-24 bg-[#F5F7F9] relative overflow-hidden">
                 <div class="absolute right-0 top-1/2 -translate-y-1/2 w-64 h-64 bg-[#DFF3EA] rounded-l-full opacity-50 blur-3xl"></div>
                 
@@ -205,7 +192,6 @@
                 </div>
             </section>
 
-            <!-- CASES TEASER CTA -->
             <section class="py-24 bg-white">
                 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="bg-gradient-to-br from-[#163E59] to-[#1F5F8B] rounded-[3rem] p-10 md:p-16 text-center relative overflow-hidden shadow-2xl">
@@ -224,7 +210,6 @@
         </div>
 
 
-        <!-- PAGE: SERVICES -->
         <div id="page-services" class="page-section hidden animate-fade-in pb-20">
             <div class="bg-[#1F5F8B] py-20 text-center text-white">
                 <h1 class="text-4xl md:text-5xl font-bold mb-6">Soluciones para tu negocio</h1>
@@ -344,7 +329,6 @@
         </div>
 
 
-        <!-- PAGE: ABOUT -->
         <div id="page-about" class="page-section hidden animate-fade-in pb-20">
             <div class="bg-[#F5F7F9] py-20">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
@@ -372,14 +356,12 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN DE FUNDADORES -->
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-4">Nuestro Equipo</h2>
                 <p class="text-gray-500 max-w-2xl mx-auto">Los 4 pilares estratégicos de nuestra consultora.</p>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Fundador 1 -->
                 <div class="text-center group">
                     <div class="relative w-48 h-48 mx-auto mb-6">
                          <img src="./assets/ciro.jpeg" class="w-full h-full object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform" alt="Fundador 1">
@@ -387,7 +369,6 @@
                     <h4 class="text-xl font-bold">Caratozzolo, Ciro Fidel</h4>
                     <p class="text-[#1F5F8B] font-medium">Product Owner</p>
                 </div>
-                <!-- Fundador 2 -->
                 <div class="text-center group">
                     <div class="relative w-48 h-48 mx-auto mb-6">
                         <img src="./assets/pablo.jpeg" class="w-full h-full object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform" alt="Fundador 2">
@@ -395,7 +376,6 @@
                     <h4 class="text-xl font-bold">Rau, Pablo</h4>
                     <p class="text-[#1F5F8B] font-medium">Product Analyst</p>
                 </div>
-                <!-- Fundador 3 -->
                 <div class="text-center group">
                     <div class="relative w-48 h-48 mx-auto mb-6">
                         <img src="./assets/ramiro.jpeg" class="w-full h-full object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform" alt="Fundador 3">
@@ -403,7 +383,6 @@
                     <h4 class="text-xl font-bold">Tallone, Ramiro</h4>
                     <p class="text-[#1F5F8B] font-medium">Business Analyst</p>
                 </div>
-                <!-- Fundador 4 -->
                 <div class="text-center group">
                     <div class="relative w-48 h-48 mx-auto mb-6">
                         <img src="./assets/seba.png" class="w-full h-full object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform" alt="Fundador 4">
@@ -444,13 +423,10 @@
         </div>
 
 
-        <!-- PAGE: CONTACT -->
         <div id="page-contact" class="page-section hidden animate-fade-in py-20 bg-[#F5F7F9]">
             
-            <!-- Contact Form Container -->
             <div id="contact-form-container" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="bg-white rounded-[2.5rem] shadow-xl overflow-hidden flex flex-col md:flex-row">
-                    <!-- Info Side -->
                     <div class="bg-gradient-to-br from-[#163E59] to-[#1F5F8B] md:w-2/5 p-10 text-white flex flex-col justify-between">
                         <div>
                             <h2 class="text-3xl font-bold mb-4">Da el primer paso</h2>
@@ -466,7 +442,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Form Side -->
                     <div class="md:w-3/5 p-10 md:p-14">
                         <h3 class="text-2xl font-bold text-[#163E59] mb-8">Formulario de Contacto</h3>
                         <form onsubmit="handleContactSubmit(event)" class="space-y-6">
@@ -502,7 +477,6 @@
                 </div>
             </div>
 
-            <!-- Contact Success Message (Hidden by default) -->
             <div id="contact-success-container" class="hidden min-h-[60vh] flex items-center justify-center p-4">
                 <div class="bg-white max-w-2xl w-full p-10 rounded-3xl shadow-2xl text-center border-t-8 border-[#6FC1A7]">
                     <i data-lucide="check-circle" class="w-20 h-20 text-[#6FC1A7] mx-auto mb-6"></i>
@@ -526,10 +500,8 @@
         </div>
 
 
-        <!-- PAGE: CASES -->
         <div id="page-cases" class="page-section hidden animate-fade-in">
             
-            <!-- Locked State -->
             <div id="cases-locked" class="min-h-[80vh] flex items-center justify-center p-4 bg-[#F5F7F9] relative overflow-hidden">
                 <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-[#DFF3EA] rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
                 <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#6FC1A7]/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
@@ -560,9 +532,7 @@
                 </div>
             </div>
 
-            <!-- Unlocked State (Dashboard Rediseñado Mobile-First sin marcas de citas) -->
             <div id="cases-unlocked" class="hidden bg-[#F5F7F9] min-h-screen pb-20">
-                <!-- Encabezado de Control de Datos -->
                 <div class="bg-[#163E59] py-8 md:py-12 px-4 border-b-4 border-[#6FC1A7]">
                     <div class="max-w-4xl mx-auto flex flex-col gap-3 text-white">
                         <div class="flex items-center gap-2">
@@ -578,16 +548,13 @@
                     </div>
                 </div>
 
-                <!-- Contenedor Principal Unificado Mobile-First -->
                 <div class="max-w-4xl mx-auto px-4 mt-8 space-y-8">
                     
-                    <!-- ENCABEZADO COMERCIAL Y RESUMEN DEL PROYECTO -->
                     <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
                         <div class="p-6 md:p-8 bg-gradient-to-br from-[#163E59] to-[#1F5F8B] text-white">
                             <span class="text-[10px] font-bold uppercase tracking-widest text-[#6FC1A7] bg-white/10 px-2.5 py-1 rounded-md inline-block mb-3">
                                 Proyecto de Transformación Digital
                             </span>
-                            <!-- Título Corporativo Mandatorio -->
                             <h2 class="text-xl md:text-3xl font-extrabold tracking-tight leading-tight">
                                 Implementación de Plataforma Corporativa para Inversora de Capilla S.A.
                             </h2>
@@ -597,7 +564,6 @@
                                 Consultoría orientada a mitigar silos informativos y estandarizar la operatoria inmobiliaria de la empresa. A través de la adopción del framework TOGAF y metodologías ágiles, se estructuró un salto cualitativo hacia la digitalización integral del ciclo de obra y comercial.
                             </p>
                             
-                            <!-- Ficha de Datos Corporativos de la Organización -->
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-gray-100 text-xs">
                                 <div>
                                     <p class="text-gray-400 font-medium uppercase tracking-wider mb-0.5">Rubro Principal</p>
@@ -619,7 +585,6 @@
                         </div>
                     </div>
 
-                    <!-- SECCIÓN DE SELECCIÓN DE SPRINT / ACORDEÓN INTEGRADO -->
                     <div class="space-y-4">
                         <div class="flex items-center justify-between px-1">
                             <h3 class="text-xs font-bold text-[#1F5F8B] uppercase tracking-widest flex items-center gap-2">
@@ -628,13 +593,10 @@
                             <span class="text-[10px] text-gray-400 font-medium">Pulsa un sprint para expandir</span>
                         </div>
 
-                        <!-- Contenedor del Acordeón Dinámico Autónomo -->
                         <div id="mobile-accordion-container" class="space-y-3">
-                            <!-- Renderizado dinámicamente mediante JavaScript de manera Mobile First -->
-                        </div>
+                            </div>
                     </div>
 
-                    <!-- SECCIÓN INFORMATIVA INFERIOR DE ACCIÓN -->
                     <div class="bg-gradient-to-br from-[#1F5F8B] to-[#163E59] rounded-3xl p-6 md:p-8 text-center text-white shadow-sm relative overflow-hidden">
                         <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-[#6FC1A7]/10 rounded-full blur-xl"></div>
                         <h4 class="text-lg font-bold mb-2">¿Buscás optimizar la madurez operativa de tu PYME?</h4>
@@ -651,7 +613,6 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
     <footer class="bg-[#163E59] text-[#F5F7F9] pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-[#1F5F8B] pb-12">
@@ -692,7 +653,6 @@
         </div>
     </footer>
 
-    <!-- LOGIC -->
     <script>
         // Inicializar iconos de Lucide
         lucide.createIcons();
@@ -804,9 +764,9 @@
             }
         }
 
-        // ==========================================
-        // DATA & LOGIC FOR MOBILE-FIRST ACCORDION
-        // ==========================================
+        // =======================================================
+        // DATA & LOGIC FOR MOBILE-FIRST ACCORDION (UP TO SPRINT 13)
+        // =======================================================
 
         const caseStagesData = [
             {
@@ -827,7 +787,8 @@
                 kpis: [
                     { label: "Carga Manual Inicial", value: "100%", desc: "Bases desintegradas" },
                     { label: "Plazo Centralización", value: "6 Meses", desc: "Meta del proyecto" }
-                ]
+                ],
+                hasDocument: true
             },
             {
                 id: 2,
@@ -847,7 +808,8 @@
                 kpis: [
                     { label: "Historias Relevadas", value: "7 HUs", desc: "Core del negocio" },
                     { label: "Canal Crítico Hoy", value: "WhatsApp", desc: "Uso informal ad-hoc" }
-                ]
+                ],
+                hasDocument: true
             },
             {
                 id: 3,
@@ -866,8 +828,9 @@
                 ],
                 kpis: [
                     { label: "Silos de Información", value: "6 Excels", desc: "Cero integridad" },
-                    { label: "Seguridad de Datos", value: "Ninguna", desc: "Riesgo de pérdida" }
-                ]
+                    { label: "Security Stack", value: "Inexistente", desc: "Riesgo de pérdida" }
+                ],
+                hasDocument: true
             },
             {
                 id: 4,
@@ -887,7 +850,8 @@
                 kpis: [
                     { label: "Tipos de Innovación", value: "5 Ejes", desc: "Doblin Framework" },
                     { label: "Alcance Comercial", value: "Global", desc: "Foco de expansión" }
-                ]
+                ],
+                hasDocument: true
             },
             {
                 id: 5,
@@ -907,7 +871,8 @@
                 kpis: [
                     { label: "Plataforma de Datos", value: "Cloud-First", desc: "Managed SQL" },
                     { label: "Control de Acceso", value: "MFA", desc: "Zero Trust" }
-                ]
+                ],
+                hasDocument: true
             },
             {
                 id: 6,
@@ -927,7 +892,8 @@
                 kpis: [
                     { label: "Táctica Elegida", value: "Híbrida", desc: "Modular por fases" },
                     { label: "Mitigación de Riesgo", value: "Alta", desc: "Evita fatiga cultural" }
-                ]
+                ],
+                hasDocument: true
             },
             {
                 id: 7,
@@ -947,7 +913,111 @@
                 kpis: [
                     { label: "Instrumentos de Control", value: "WBS + Gantt", desc: "Gobernanza formal" },
                     { label: "Alineación de Socios", value: "100%", desc: "Límites blindados" }
-                ]
+                ],
+                hasDocument: true
+            },
+            {
+                id: 8,
+                sprint: "Sprint 8",
+                title: "Análisis del Mercado de Soluciones y Benchmarking",
+                documentName: "08-T Análisis del mercado y benchmarking.docx",
+                documentUrl: "assets/08-T Análisis del mercado y benchmarking.docx",
+                statusText: "Preselección Cerrada",
+                statusClass: "bg-green-50 text-green-700 border-green-200",
+                icon: "search",
+                executiveSummary: "Sondeo cualitativo del mercado tecnológico (RFI) mapeando 4 proveedores candidatos (Zoho One, Dynamics 365, Procore y HubSpot). Se ponderan las variables funcionales, operativas y el soporte técnico offline crítico para el desarrollo de obras en zonas rurales.",
+                highlights: [
+                    "Ponderación del nivel 0: Funcional (35%), Proveedor (25%), Técnico (25%) y Económico (15%).",
+                    "Selección estratégica para RFP: Microsoft Dynamics 365 y Zoho One para análisis profundo.",
+                    "Exclusión objetiva de Procore + Salesforce por exceder el presupuesto y la escala de personal de la PYME."
+                ],
+                kpis: [
+                    { label: "Proveedores Preseleccionados", value: "2 de 4", desc: "RFI Completado" },
+                    { label: "Foco Técnico", value: "Nube / Offline", desc: "Requisito Los Cardales" }
+                ],
+                hasDocument: true
+            },
+            {
+                id: 9,
+                sprint: "Sprint 9",
+                title: "Matriz RFP y Criterios de Factibilidad",
+                documentName: "09-T Factibilidad.docx",
+                documentUrl: "assets/09-T Factibilidad.docx",
+                statusText: "Validado",
+                statusClass: "bg-purple-50 text-purple-700 border-purple-200",
+                icon: "file-spreadsheet",
+                executiveSummary: "Construcción formal de la matriz del Request For Proposal (RFP) estructurada en tres niveles de desagregación atómica (Aspectos, Categorías y Requisitos). Permite evaluar y comparar con exactitud las cotizaciones de forma homogénea.",
+                highlights: [
+                    "Nivel 0 a Nivel 2: Mapeo minucioso de la trayectoria del oferente e implementaciones en el rubro.",
+                    "Escalas de Medición: Parámetros claros de cumplimiento nativo (100 pts) frente a adaptaciones con código.",
+                    "Ocultamiento estratégico de ponderaciones al proveedor para evitar respuestas condicionadas."
+                ],
+                kpis: [
+                    { label: "Niveles de Desagregación", value: "3 Niveles", desc: "Integridad atómica" },
+                    { label: "Escala Funcional", value: "0 a 100", desc: "Puntaje estandarizado" }
+                ],
+                hasDocument: true
+            },
+            {
+                id: 10,
+                sprint: "Sprint 10",
+                title: "Evaluación Económica y Análisis de Costos",
+                documentName: "10-T Evaluación económica.docx",
+                documentUrl: "assets/10-T Evaluación económica.docx",
+                statusText: "Auditado",
+                statusClass: "bg-blue-50 text-blue-700 border-blue-200",
+                icon: "dollar-sign",
+                executiveSummary: "Cuantificación financiera avanzada cruzando costos directos e indirectos bajo los enfoques de CAPEX y OPEX. Se proyecta el Costo Inicial de Puesta en Marcha y el Costo Total de Propiedad (CTP/TCO) a un horizonte fijo de 3 períodos anuales.",
+                highlights: [
+                    "Desglose de Inversión CAPEX: Costos de consultoría, setup, licenciamiento modular y migración asíncrona de datos.",
+                    "Desglose de Operación OPEX: Suscripciones recurrentes de mantenimiento, soporte Premium y entrenamiento online.",
+                    "Definición analítica del Retorno de Inversión (ROI) cruzando los factores de éxito e incrementos de eficiencia."
+                ],
+                kpis: [
+                    { label: "Horizonte Proyectado", value: "3 Años", desc: "A valores constantes" },
+                    { label: "Tablero Resumen", value: "Directos / Indirectos", desc: "Modelo financiero" }
+                ],
+                hasDocument: true
+            },
+            {
+                id: 11,
+                sprint: "Sprint 11",
+                title: "Análisis de Propuestas Comerciales y Brechas",
+                documentName: "11-T Análisis de la propuesta comercial.docx",
+                documentUrl: "assets/11-T Análisis de la propuesta comercial.docx",
+                statusText: "Dictamen Emitido",
+                statusClass: "bg-indigo-50 text-indigo-700 border-indigo-200",
+                icon: "check-square",
+                executiveSummary: "Análisis comparativo final (Gap Analysis) cruzando los desvíos entre los requerimientos funcionales originales y las soluciones presentadas por los proveedores. Incluye el dictamen de recomendación técnica y justificación de la selección.",
+                highlights: [
+                    "Dictamen de Selección: Justificación de la propuesta con mayor cobertura ponderada.",
+                    "Estrategia de Brechas: Plan de acción para reparar los módulos parcialmente cubiertos mediante integraciones in-house.",
+                    "Gobernanza Contractual: Incorporación de visitas de auditoría técnica y compromisos de SLA con el partner."
+                ],
+                kpis: [
+                    { label: "Herramienta de Control", value: "Gap Analysis", desc: "Mapeo de desvíos" },
+                    { label: "Gráficos de Soporte", value: "Cashflow + Barras", desc: "Visibilidad ejecutiva" }
+                ],
+                hasDocument: true
+            },
+            {
+                id: 12,
+                sprint: "Sprint 12",
+                title: "Resumen ejecutivo del proyecto",
+                documentName: "Resumen ejecutivo del proyecto.docx",
+                documentUrl: "assets/Resumen ejecutivo del proyecto.docx",
+                statusText: "Aprobado por el CEO",
+                statusClass: "bg-emerald-50 text-emerald-700 border-emerald-200",
+                icon: "archive",
+                executiveSummary: "Cierre técnico y administrativo formal del proceso proyectual de consultoría. Se consolidan los entregables unificados para los accionistas e inversores, garantizando que se ha cumplido rigurosamente con el alcance pactado.",
+                highlights: [
+                    "Informe Ejecutivo Compilado: Documento de síntesis estructurado para la toma de decisiones directivas.",
+                ],
+                kpis: [
+                    { label: "Hitos de Alcance", value: "100% Cubiertos", desc: "Balance cerrado" },
+                    { label: "Límite del Informe", value: "Máx 5 Páginas", desc: "Alta capacidad de síntesis" }
+                ],
+                hasDocument: true
             }
         ];
 
@@ -1012,6 +1082,36 @@
                         </div>
                     `).join('');
 
+                    // Generación del bloque condicional de descarga para Word
+                    let footerActionHtml = '';
+                    if (stage.hasDocument) {
+                        footerActionHtml = `
+                            <div class="pt-4 border-t border-gray-100 flex flex-col gap-3">
+                                <div class="flex items-center gap-2 text-left">
+                                    <i data-lucide="file" class="w-6 h-6 text-blue-500 shrink-0"></i>
+                                    <div class="leading-none">
+                                        <p class="text-xs font-bold text-gray-700 truncate max-w-[250px]">${stage.documentName}</p>
+                                        <span class="text-[9px] text-gray-400 font-medium">Ficha de control técnico (.docx)</span>
+                                    </div>
+                                </div>
+                                <a href="${stage.documentUrl}" download class="w-full bg-[#1F5F8B] hover:bg-[#163E59] text-white py-3.5 rounded-xl font-bold text-xs transition-all shadow-sm flex items-center justify-center gap-2 transform active:scale-[0.99]">
+                                    <i data-lucide="download" class="w-4 h-4"></i> Descargar Ficha Técnica Word
+                                </a>
+                            </div>
+                        `;
+                    } else {
+                        // Maquetación Premium Fija para el Hito 13 de Cierre de Negocio
+                        footerActionHtml = `
+                            <div class="pt-4 border-t border-gray-100 flex flex-col text-xs text-center bg-[#F5F7F9]/60 p-4 rounded-xl border border-dashed border-gray-200">
+                                <div class="flex items-center justify-center gap-2 text-[#163E59] font-bold mb-1">
+                                    <i data-lucide="shield-check" class="w-4 h-4 text-[#6FC1A7]"></i>
+                                    <span>Gobernanza Corporativa Concluida</span>
+                                </div>
+                                <p class="text-[10px] text-gray-400 font-medium">Estrategia unificada por OpenSource Consulting para Inversora de Capilla S.A.</p>
+                            </div>
+                        `;
+                    }
+
                     panel.innerHTML = `
                         <div class="flex items-center gap-2">
                             <span class="text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border ${stage.statusClass}">
@@ -1034,18 +1134,7 @@
                             <div class="grid grid-cols-2 gap-3">${kpisHtml}</div>
                         </div>
 
-                        <div class="pt-4 border-t border-gray-100 flex flex-col gap-3">
-                            <div class="flex items-center gap-2 text-left">
-                                <i data-lucide="file" class="w-6 h-6 text-blue-500 shrink-0"></i>
-                                <div class="leading-none">
-                                    <p class="text-xs font-bold text-gray-700 truncate max-w-[250px]">${stage.documentName}</p>
-                                    <span class="text-[9px] text-gray-400 font-medium">Ficha de control técnico (.docx)</span>
-                                </div>
-                            </div>
-                            <a href="${stage.documentUrl}" download class="w-full bg-[#1F5F8B] hover:bg-[#163E59] text-white py-3.5 rounded-xl font-bold text-xs transition-all shadow-sm flex items-center justify-center gap-2 transform active:scale-[0.99]">
-                                <i data-lucide="download" class="w-4 h-4"></i> Descargar Ficha Técnica Word
-                            </a>
-                        </div>
+                        ${footerActionHtml}
                     `;
                     card.appendChild(panel);
                 }
