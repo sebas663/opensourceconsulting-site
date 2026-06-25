@@ -1017,7 +1017,8 @@
                     { label: "Hitos de Alcance", value: "100% Cubiertos", desc: "Balance cerrado" },
                     { label: "Límite del Informe", value: "Máx 5 Páginas", desc: "Alta capacidad de síntesis" }
                 ],
-                hasDocument: true
+                hasDocument: true,
+                buttonTitle: "Descargar Ficha Técnica PDF"
             }
         ];
 
@@ -1095,7 +1096,7 @@
                                     </div>
                                 </div>
                                 <a href="${stage.documentUrl}" download class="w-full bg-[#1F5F8B] hover:bg-[#163E59] text-white py-3.5 rounded-xl font-bold text-xs transition-all shadow-sm flex items-center justify-center gap-2 transform active:scale-[0.99]">
-                                    <i data-lucide="download" class="w-4 h-4"></i> Descargar Ficha Técnica Word
+                                    <i data-lucide="download" class="w-4 h-4"></i> ${stage.buttonTitle || "Descargar Ficha Técnica Word"} 
                                 </a>
                             </div>
                         `;
